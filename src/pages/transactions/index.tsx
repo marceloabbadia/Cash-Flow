@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summery";
 import { SearchForm } from "../SearchForm";
@@ -7,7 +7,6 @@ import {
   TransactionsContainer,
   TransactionsTable,
 } from "./styles";
-import { Trash } from "phosphor-react";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
 import { dataFormatter, priceFormatter } from "../../utils/formatter";
 
