@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2023-08-25T21:32:33.202Z"
+    },
+    {
+      "id": 2,
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentaçao",
+      "price": 60,
+      "createdAt": "2023-08-25T21:32:33.202Z"
+    },
+    {
+      "id": 3,
+      "description": "Curso",
+      "type": "outcome",
+      "category": "Educaçao",
+      "price": 1980,
+      "createdAt": "2023-08-25T21:17:33.202Z"
+    },
+    {
+      "id": 4,
+      "description": "teste",
+      "type": "outcome",
+      "category": "Teste",
+      "price": 150,
+      "createdAt": "2023-07-25T21:17:33.202Z"
+    }
+  ]
+}
