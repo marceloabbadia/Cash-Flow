@@ -1,6 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import * as RadioGroup from "@radix-ui/react-radio-group";
-
 import {
   CloseButton,
   Content,
@@ -9,8 +8,32 @@ import {
   TransactionTypeButton,
 } from "./styles";
 import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const newTransactionFormSchema = z.object({
+  description: z.string(),
+  price: z.number(),
+  category: z.string(),
+  // type: z.enum(["income", "outcome"]),
+});
+
+type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
 export function NewTransactionModal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<NewTransactionFormInputs>({
+    resolver: zodResolver(newTransactionFormSchema),
+  });
+
+  function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    console.log(data);
+  }
+
   return (
     <Dialog.DialogPortal>
       <Overlay />
@@ -22,11 +45,28 @@ export function NewTransactionModal() {
           <X size={24} />
         </CloseButton>
 
-        <form action="">
-          <input type="text" placeholder="Descrição" required />
-          <input type="text" placeholder="Preço" required />
-          <input type="text" placeholder="Categoria" required />
-          <button type="submit">Cadastrar</button>
+        <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
+          <input
+            type="text"
+            placeholder="Descrição"
+            required
+            {...register("description")}
+          />
+          <input
+            type="text"
+            placeholder="Preço"
+            required
+            {...register("price", { valueAsNumber: true })}
+          />
+          <input
+            type="text"
+            placeholder="Categoria"
+            required
+            {...register("category")}
+          />
+          <button type="submit" disabled={isSubmitting}>
+            Cadastrar
+          </button>
 
           <TransactionType>
             <TransactionTypeButton variant="income" value="income">
